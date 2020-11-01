@@ -13,6 +13,8 @@
 		EB1243DD254D0FE500802B3F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB1243DC254D0FE500802B3F /* Preview Assets.xcassets */; };
 		EB1243DF254D0FE500802B3F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1243DE254D0FE500802B3F /* Persistence.swift */; };
 		EB1243E2254D0FE500802B3F /* SwiftuiCoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB1243E0254D0FE500802B3F /* SwiftuiCoreData.xcdatamodeld */; };
+		EB1243EC254D145900802B3F /* FillFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1243EB254D145900802B3F /* FillFormView.swift */; };
+		EB1243F1254D179F00802B3F /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB1243F0254D179F00802B3F /* TodoViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		EB1243DE254D0FE500802B3F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		EB1243E1254D0FE500802B3F /* SwiftuiCoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SwiftuiCoreData.xcdatamodel; sourceTree = "<group>"; };
 		EB1243E3254D0FE500802B3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB1243EB254D145900802B3F /* FillFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FillFormView.swift; sourceTree = "<group>"; };
+		EB1243F0254D179F00802B3F /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,8 +60,9 @@
 		EB1243D4254D0FE400802B3F /* SwiftuiCoreData */ = {
 			isa = PBXGroup;
 			children = (
+				EB1243EF254D176600802B3F /* ViewModel */,
+				EB1243EA254D142C00802B3F /* Views */,
 				EB1243D5254D0FE400802B3F /* SwiftuiCoreDataApp.swift */,
-				EB1243D7254D0FE400802B3F /* ContentView.swift */,
 				EB1243D9254D0FE500802B3F /* Assets.xcassets */,
 				EB1243DE254D0FE500802B3F /* Persistence.swift */,
 				EB1243E3254D0FE500802B3F /* Info.plist */,
@@ -73,6 +78,23 @@
 				EB1243DC254D0FE500802B3F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EB1243EA254D142C00802B3F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EB1243D7254D0FE400802B3F /* ContentView.swift */,
+				EB1243EB254D145900802B3F /* FillFormView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EB1243EF254D176600802B3F /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EB1243F0254D179F00802B3F /* TodoViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +166,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB1243F1254D179F00802B3F /* TodoViewModel.swift in Sources */,
+				EB1243EC254D145900802B3F /* FillFormView.swift in Sources */,
 				EB1243DF254D0FE500802B3F /* Persistence.swift in Sources */,
 				EB1243D8254D0FE400802B3F /* ContentView.swift in Sources */,
 				EB1243E2254D0FE500802B3F /* SwiftuiCoreData.xcdatamodeld in Sources */,
