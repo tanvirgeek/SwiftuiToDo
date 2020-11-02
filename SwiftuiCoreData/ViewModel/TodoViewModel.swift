@@ -13,7 +13,7 @@ class ToDoViewModel:ObservableObject{
     @Published var date = Date()
     @Published var showingSheet = false
     @Published var savingErrorAlert = false
-    
+    @Published var updateItem:Todo!
     let calender = Calendar.current
     
     func checkDate() -> String{
@@ -37,18 +37,36 @@ class ToDoViewModel:ObservableObject{
     }
     
     func writeToCoreData(context: NSManagedObjectContext){
-        let newTodo = Todo(context: context)
-        newTodo.date = date
-        newTodo.todo = todo
-        
-        do {
-            try context.save()
-            showingSheet.toggle()
-            print(showingSheet)
+        //update item
+        if updateItem != nil {
+            updateItem.date = date
+            updateItem.todo = todo
             
-        }catch{
-            print("Error Saving data")
-            savingErrorAlert.toggle()
+            try! context.save()
+            
+            updateItem = nil
+            showingSheet.toggle()
+        }else{
+            let newTodo = Todo(context: context)
+            newTodo.date = date
+            newTodo.todo = todo
+            
+            do {
+                try context.save()
+                showingSheet.toggle()
+                //print(showingSheet)
+                
+            }catch{
+                print("Error Saving data")
+                savingErrorAlert.toggle()
+            }
         }
+        
+    }
+    func editToDo(todo:Todo){
+        updateItem = todo
+        self.date = updateItem.date!
+        self.todo = updateItem.todo!
+      showingSheet.toggle()
     }
 }

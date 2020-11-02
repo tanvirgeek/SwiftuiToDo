@@ -11,6 +11,7 @@ import CoreData
 struct ContentView: View {
     @StateObject var ToDoVM = ToDoViewModel()
     @FetchRequest(entity: Todo.entity(), sortDescriptors: [NSSortDescriptor(key: "date", ascending: true)], animation:.spring()) var results : FetchedResults<Todo>
+    @Environment (\.managedObjectContext) var context
     
     var body: some View {
         VStack{
@@ -22,21 +23,44 @@ struct ContentView: View {
                 Spacer(minLength: 0)
             }.padding()
             
-           
-            ScrollView(.vertical, showsIndicators:false){
-                ForEach(results){ task in
-                    LazyVStack(alignment:.leading){
-                        Text("\(task.todo ?? "")")
-                        Text("\(task.date ?? Date(), style:.date)")
-                        Divider()
+            Spacer()
+            
+            if results.isEmpty{
+                Text("No Todo")
+            }else{
+                ScrollView(.vertical, showsIndicators:false){
+                    LazyVStack{
+                        ForEach(results){ task in
+                            VStack(alignment:.leading){
+                                Text("\(task.todo ?? "")")
+                                Text("\(task.date ?? Date(), style:.date)")
+                                Divider()
+                            }.contextMenu(/*@START_MENU_TOKEN@*/ContextMenu(menuItems: {
+                                Button(action: {
+                                    
+                                    ToDoVM.editToDo(todo: task)
+                                }, label: {
+                                    Text("Edit")
+                                })
+                                Button(action: {
+                                    context.delete(task)
+                                    try! context.save()
+                                }, label: {
+                                    Text("Delete")
+                                })
+                                Text("Menu Item 3")
+                            })/*@END_MENU_TOKEN@*/)
+                        }
                     }
                 }
             }
             
+            Spacer()
+            
             Button(action: {
                 ToDoVM.showingSheet.toggle()
             }, label: {
-                /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
+                Text("Add New Todo")
                     .fontWeight(.heavy)
                     .font(.largeTitle)
             }).sheet(isPresented: $ToDoVM.showingSheet, content: {
@@ -44,7 +68,7 @@ struct ContentView: View {
             })
         }
     }
-
+    
 }
 
 

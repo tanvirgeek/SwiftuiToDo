@@ -12,7 +12,7 @@ struct FillFormView: View {
     @Environment (\.managedObjectContext) var context
     var body: some View {
         VStack{
-            Text("New Task")
+            Text(ToDoVM.updateItem == nil ? "New Todo": "Update Todo")
                 .fontWeight(.heavy)
                 .font(.largeTitle)
             TextEditor(text: $ToDoVM.todo)
@@ -45,7 +45,7 @@ struct FillFormView: View {
             Button(action: {
                 ToDoVM.writeToCoreData(context: context)
             }, label: {
-                Text("Add New Task")
+                Text(ToDoVM.updateItem == nil ? "Add New Todo": "Update New Todo")
                     .padding()
                     .cornerRadius(10)
             }).alert(isPresented: $ToDoVM.savingErrorAlert){
